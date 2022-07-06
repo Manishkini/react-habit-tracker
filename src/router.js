@@ -24,7 +24,7 @@ const routes = [
     extact: true,
   },
   {
-    path: '/habits/detail',
+    path: '/habits/detail/:id',
     Component: lazy(() => import('./pages/habits/detail-habit')),
     extact: true,
   },
@@ -35,13 +35,12 @@ const PrivateRoute = ({ user }) => {
 };
 
 const PublicRoute = ({ user }) => {
-  console.log(user);
   return user && user.email ? <Navigate to={'/habits'} /> : <Outlet />;
 };
 
 function router({ user }) {
   return (
-    <div className="font-mono">
+    <div className="font-mono bg-slate-800 text-green-100">
       <Header />
       <BrowserRouter>
         <Routes>

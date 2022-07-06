@@ -4,11 +4,18 @@ const userSlicer = createSlice({
   name: 'users',
   initialState: {
     user: {
-      email: 'something',
+      email: '',
     },
   },
-  reducers: {},
+  reducers: {
+    signIn: (state, action) => {
+      state.user.email = action.payload;
+    },
+    signOut: (state, action) => {
+      state.user.email = '';
+    },
+  },
 });
 
-export const {} = userSlicer.actions;
+export const { signIn, signOut } = userSlicer.actions;
 export default userSlicer.reducer;
