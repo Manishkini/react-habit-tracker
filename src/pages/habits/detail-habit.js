@@ -18,9 +18,6 @@ function DetailHabit({ habits, habitStatus }) {
 
   useEffect(() => {
     if (id && habits && habits.length) {
-      console.log(habits[id]);
-
-      // const allHabitStatus = habitStatus;
       setHabit(habits[id]);
     }
   }, [id, habits]);
@@ -45,7 +42,9 @@ function DetailHabit({ habits, habitStatus }) {
                 onChange={(e) => setMonth(e.target.value)}
               >
                 {months.map((month, index) => (
-                  <option value={index}>{month}</option>
+                  <option key={index} value={index}>
+                    {month}
+                  </option>
                 ))}
               </select>
             </div>

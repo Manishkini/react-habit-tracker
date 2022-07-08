@@ -22,7 +22,6 @@ function CreateHabit({ habits, dispatch }) {
       isEndDate,
       endDate: endDate ? moment(endDate).format('DD MMM YYYY') : null,
     };
-    console.log(data);
     dispatch(addHabit(data));
     navigate('/habits');
   };
@@ -56,15 +55,15 @@ function CreateHabit({ habits, dispatch }) {
                 Please habit select category
               </option>
               <option value="Outdoor">Outdoor</option>
-              <option value="exercise">Exercise</option>
-              <option value="finance">Finance</option>
-              <option value="health">Health</option>
-              <option value="home">Home</option>
-              <option value="meditation">Meditation</option>
-              <option value="nutrition">Nutrition</option>
-              <option value="QuitBadHabit">Quit Bad Habit</option>
-              <option value="study">Study</option>
-              <option value="work">Work</option>
+              <option value="Exercise">Exercise</option>
+              <option value="Finance">Finance</option>
+              <option value="Health">Health</option>
+              <option value="Home">Home</option>
+              <option value="Meditation">Meditation</option>
+              <option value="Nutrition">Nutrition</option>
+              <option value="Quit Bad Habit">Quit Bad Habit</option>
+              <option value="Study">Study</option>
+              <option value="Work">Work</option>
             </select>
           </div>
           <div className="flex flex-col gap-2">
@@ -76,7 +75,6 @@ function CreateHabit({ habits, dispatch }) {
               value={startDate}
               onChange={(e) => {
                 setStartDate(e.target.value);
-                console.log(e.target.value);
               }}
             />
           </div>

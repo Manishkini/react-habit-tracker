@@ -4,8 +4,16 @@ import { months } from '../../helpers/dates';
 import { connect } from 'react-redux';
 import CalenderDate from './calender-date';
 
-const styleOfTheDiv = 'w-full h-40 bg-dark-blue rounded-lg cursor-pointer';
-function Calender({ habitID, startDate, endDate, year, month, habitStatus }) {
+// const styleOfTheDiv = 'w-full h-40 bg-dark-blue rounded-lg cursor-pointer';
+function Calender({
+  habitID,
+  startDate,
+  endDate,
+  year,
+  month,
+  habitStatus,
+  dispatch,
+}) {
   const [startDayOfWeek, setStartDayOfWeek] = useState(0);
   const [currentMonthArray, setCurrentMonthArray] = useState([]);
   useEffect(() => {}, [startDate, endDate]);
@@ -24,16 +32,17 @@ function Calender({ habitID, startDate, endDate, year, month, habitStatus }) {
         const isCurrDateLsThenEqEndDate = endDate
           ? currDate <= moment(endDate)
           : true;
-        const filteredHabits = habitStatus.filter(
-          (obj) => obj.habitID === habitID
-        );
-        // console.log('filteredHabits', filteredHabits);
-        const foundTodaysObj = filteredHabits.find(
-          (obj) => obj.date === currDate.format('DD MMM YYYY')
-        );
-        // console.log('foundTodaysObj', foundTodaysObj);
+
+        let filteredHabits = [];
+        let foundTodaysObj = {};
+        if (habitStatus && habitStatus.length) {
+          filteredHabits = habitStatus.filter((obj) => obj.habitID === habitID);
+          foundTodaysObj = filteredHabits.find(
+            (obj) => obj.date === currDate.format('DD MMM YYYY')
+          );
+        }
         const data = {
-          date: currDate.format('DD MMMM YYYY'),
+          date: currDate.format('DD MMM YYYY'),
           status:
             isCurrDateGrThenEqStartDate &&
             isCurrDateLsThenEqTodaysDate &&
@@ -44,36 +53,14 @@ function Calender({ habitID, startDate, endDate, year, month, habitStatus }) {
               : null,
         };
         tempCurrentMonthArray.push(data);
-        // console.log(
-        //   `${moment(startDate).format('DD MMM YYYY')} <=  ${currDate.format(
-        //     'DD MMM YYYY'
-        //   )}`
-        // );
-        // console.log('isCurrDateGrThenEqStartDate', isCurrDateGrThenEqStartDate);
-        // console.log(
-        //   `${currDate.format('DD MMM YYYY')} <=  ${moment().format(
-        //     'DD MMM YYYY'
-        //   )}`
-        // );
-        // console.log(
-        //   'isCurrDateLsThenEqTodaysDate',
-        //   isCurrDateLsThenEqTodaysDate
-        // );
-        // console.log(
-        //   `${currDate.format('DD MMM YYYY')} <=  ${moment(endDate).format(
-        //     'DD MMM YYYY'
-        //   )}`
-        // );
-        // console.log('isCurrDateLsThenEqEndDate', isCurrDateLsThenEqEndDate);
         currDate = currDate.add(1, 'd');
       }
-      console.log(tempCurrentMonthArray);
       setStartDayOfWeek(intermediateStartDayOfWeek + 1);
       setCurrentMonthArray(tempCurrentMonthArray);
     }
-  }, [month, year, startDate]);
+  }, [month, year, startDate, habitStatus]);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-3/5 mx-auto">
       <div className="h-1/6">
         <div className="grid grid-cols-7 text-green-900 justify-items-center gap-4 px-4 py-1">
           <span>Sun</span>
@@ -97,6 +84,8 @@ function Calender({ habitID, startDate, endDate, year, month, habitStatus }) {
                   habitID={habitID}
                   startDayOfWeek={index === 0 ? startDayOfWeek : null}
                   dateObj={obj}
+                  dispatch={dispatch}
+                  id={`${obj.date.split(' ')[1]}-${index + 1}`}
                 />
               ))
             : null}

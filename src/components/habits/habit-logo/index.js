@@ -15,34 +15,34 @@ function HabitLogo({ category }) {
   useEffect(() => {
     let intermediateImagePath = '';
     switch (category) {
-      case 'exercise':
+      case 'Exercise':
         intermediateImagePath = exercise;
         break;
-      case 'finance':
+      case 'Finance':
         intermediateImagePath = finance;
         break;
-      case 'health':
+      case 'Health':
         intermediateImagePath = health;
         break;
-      case 'home':
+      case 'Home':
         intermediateImagePath = home;
         break;
-      case 'meditation':
+      case 'Meditation':
         intermediateImagePath = meditation;
         break;
-      case 'nutrition':
+      case 'Nutrition':
         intermediateImagePath = nutrition;
         break;
-      case 'outdoor':
+      case 'Outdoor':
         intermediateImagePath = outdoor;
         break;
-      case 'QuitBadHabit':
+      case 'Quit Bad Habit':
         intermediateImagePath = QuitBadHabit;
         break;
-      case 'study':
+      case 'Study':
         intermediateImagePath = study;
         break;
-      case 'work':
+      case 'Work':
         intermediateImagePath = work;
         break;
       default:

@@ -3,7 +3,6 @@ import Album from './album';
 import { connect } from 'react-redux';
 
 function Albums({ albums, dispatch }) {
-  //   console.log('albums', albums);
   return (
     <div className="grid grid-cols-3 gap-4">
       {albums && albums.length

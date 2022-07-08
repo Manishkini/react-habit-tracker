@@ -6,7 +6,6 @@ import Habit from '../../components/habits';
 
 function Habits({ habits }) {
   const navigate = useNavigate();
-  // console.log('habits', habits);
   return (
     <>
       <div className="w-full min-h-screen h-full mb-10">
