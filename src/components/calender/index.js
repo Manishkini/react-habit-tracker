@@ -4,7 +4,6 @@ import { months } from '../../helpers/dates';
 import { connect } from 'react-redux';
 import CalenderDate from './calender-date';
 
-// const styleOfTheDiv = 'w-full h-40 bg-dark-blue rounded-lg cursor-pointer';
 function Calender({
   habitID,
   startDate,
@@ -26,7 +25,11 @@ function Calender({
 
       let currDate = moment(`1-${months[month]}-${year}`);
       const tempCurrentMonthArray = [];
-      for (let i = 1; i <= moment().daysInMonth(); i++) {
+      for (
+        let i = 1;
+        i <= moment(`1-${months[month]}-${year}`).daysInMonth();
+        i++
+      ) {
         const isCurrDateGrThenEqStartDate = moment(startDate) <= currDate;
         const isCurrDateLsThenEqTodaysDate = currDate <= moment();
         const isCurrDateLsThenEqEndDate = endDate
@@ -58,7 +61,7 @@ function Calender({
       setStartDayOfWeek(intermediateStartDayOfWeek + 1);
       setCurrentMonthArray(tempCurrentMonthArray);
     }
-  }, [month, year, startDate, habitStatus]);
+  }, [month, year, startDate, endDate, habitStatus]);
   return (
     <div className="flex flex-col w-3/5 mx-auto">
       <div className="h-1/6">
@@ -89,51 +92,6 @@ function Calender({
                 />
               ))
             : null}
-          {/* <div className={styleOfTheDiv}>Sun</div>
-          <div className={styleOfTheDiv}>Mon</div>
-          <div className={styleOfTheDiv}>Tue</div> */}
-          {/* <div
-            className={styleOfTheDiv + ` col-start-7 border-4 border-yellow`}
-          >
-            Wed
-          </div>
-          <div className={styleOfTheDiv + ` border-4 border-red`}>Thu</div>
-          <div className={styleOfTheDiv + ` border-4 border-green-600`}>
-            Fri
-          </div>
-          <div className={styleOfTheDiv}>Sat</div>
-
-          <div className={styleOfTheDiv}>Sun</div>
-          <div className={styleOfTheDiv}>Mon</div>
-          <div className={styleOfTheDiv}>Tue</div>
-          <div className={styleOfTheDiv}>Wed</div>
-          <div className={styleOfTheDiv}>Thu</div>
-          <div className={styleOfTheDiv}>Fri</div>
-          <div className={styleOfTheDiv}>Sat</div>
-
-          <div className={styleOfTheDiv}>Sun</div>
-          <div className={styleOfTheDiv}>Mon</div>
-          <div className={styleOfTheDiv}>Tue</div>
-          <div className={styleOfTheDiv}>Wed</div>
-          <div className={styleOfTheDiv}>Thu</div>
-          <div className={styleOfTheDiv}>Fri</div>
-          <div className={styleOfTheDiv}>Sat</div>
-
-          <div className={styleOfTheDiv}>Sun</div>
-          <div className={styleOfTheDiv}>Mon</div>
-          <div className={styleOfTheDiv}>Tue</div>
-          <div className={styleOfTheDiv}>Wed</div>
-          <div className={styleOfTheDiv}>Thu</div>
-          <div className={styleOfTheDiv}>Fri</div>
-          <div className={styleOfTheDiv}>Sat</div>
-
-          <div className={styleOfTheDiv}>Sun</div>
-          <div className={styleOfTheDiv}>Mon</div>
-          <div className={styleOfTheDiv}>Tue</div>
-          <div className={styleOfTheDiv}>Wed</div>
-          <div className={styleOfTheDiv}>Thu</div>
-          <div className={styleOfTheDiv}>Fri</div>
-          <div className={styleOfTheDiv}>Sat</div> */}
         </div>
       </div>
     </div>

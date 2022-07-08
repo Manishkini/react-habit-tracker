@@ -89,8 +89,6 @@ function CalenderDate({ dateObj, startDayOfWeek, habitID, dispatch, id }) {
             )
           ) : null}
         </div>
-        {/* <span>{dateObj.status}</span>
-        <span>{dateObj.date}</span> */}
       </div>
     </div>
   );
