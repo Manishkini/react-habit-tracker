@@ -15,3 +15,4 @@ root.render(
     <ToastContainer />
   </Provider>
 );
+// "start": "react-scripts start",
