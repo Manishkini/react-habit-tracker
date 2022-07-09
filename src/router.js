@@ -35,7 +35,11 @@ const PrivateRoute = ({ user }) => {
 };
 
 const PublicRoute = ({ user }) => {
-  return user && user.email ? <Navigate to={'/habits'} /> : <Outlet />;
+  return user && user.email ? (
+    <Navigate to={'/habits'} />
+  ) : (
+    <Navigate to={'/auth/sign-in'} />
+  );
 };
 
 function router({ user }) {
@@ -44,17 +48,15 @@ function router({ user }) {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PublicRoute user={user} />}>
-            <Route path="/" element={<Navigate to={'/auth/sign-in'} />} />
-            <Route
-              path="/auth/sign-in"
-              element={
-                <Suspense fallback={null}>
-                  <SignIn />
-                </Suspense>
-              }
-            />
-          </Route>
+          <Route path="/" element={<PublicRoute user={user} />}></Route>
+          <Route
+            path="/auth/sign-in"
+            element={
+              <Suspense fallback={null}>
+                <SignIn />
+              </Suspense>
+            }
+          ></Route>
           <Route path="/habits" element={<PrivateRoute user={user} />}>
             {routes.map(({ path, extact, Component }, index) => (
               <Route
