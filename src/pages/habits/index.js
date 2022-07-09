@@ -17,7 +17,9 @@ function Habits({ habits }) {
               ))}
             </div>
           ) : (
-            <span className="text-center">Please add a habit</span>
+            <div className="w-full text-center pt-40">
+              <span className="text-center text-5xl font-jack">{`( Please add a habit )`}</span>
+            </div>
           )}
         </div>
       </div>
