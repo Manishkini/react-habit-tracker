@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../redux/reducers/users';
 
 function SignIn({ dispatch }) {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
   const handleSubmit = () => {
     dispatch(signIn(email));
+    return navigate('/habits');
   };
   return (
     <div className="w-full h-screen">
