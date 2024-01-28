@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../redux/reducers/users';
 
 function SignIn({ dispatch }) {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('user@habits.com');
   const navigate = useNavigate();
   const handleSubmit = () => {
     dispatch(signIn(email));
@@ -18,6 +18,7 @@ function SignIn({ dispatch }) {
           <input
             className="w-full h-12 text-black rounded-lg"
             type="text"
+            defaultValue={'user@habits.com'}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

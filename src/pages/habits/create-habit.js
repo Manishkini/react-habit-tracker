@@ -26,6 +26,10 @@ function CreateHabit({ habits, dispatch }) {
     navigate('/habits');
   };
 
+  const handleBack = () => {
+    navigate('/habits');
+  };
+
   return (
     <div className="w-full h-screen">
       <div className="w-2/4 mx-auto">
@@ -39,6 +43,7 @@ function CreateHabit({ habits, dispatch }) {
               className="rounded-lg"
               id="habit-name"
               type="text"
+              placeholder='it can be "Gym"'
               value={habitName}
               onChange={(e) => setHabitName(e.target.value)}
             />
@@ -114,12 +119,18 @@ function CreateHabit({ habits, dispatch }) {
               />
             </div>
           ) : null}
-          <div className="flex flex-row justify-center">
+          <div className="flex flex-row justify-center gap-4">
             <button
               className="w-auto px-5 py-3 bg-darkest-blue hover:bg-dark-blue rounded-lg text-xl"
               onClick={handleClick}
             >
               Submit
+            </button>
+            <button
+              className="w-auto px-5 py-3 bg-darkest-blue hover:bg-dark-blue rounded-lg text-xl"
+              onClick={handleBack}
+            >
+              Go Back
             </button>
           </div>
         </div>
